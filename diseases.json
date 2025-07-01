@@ -1,0 +1,351 @@
+[
+  {
+    "name": "Bronchitis",
+    "symptoms": "cough with mucus, chest discomfort, fatigue",
+    "test_results": "Chest X-ray, sputum test",
+    "recommendation": "Rest, stay hydrated, and use bronchodilators or antibiotics if bacterial.",
+    "medicine": "Amoxicillin, Azithromycin, Salbutamol"
+  },
+  {
+    "name": "Peptic Ulcer",
+    "symptoms": "stomach pain, bloating, nausea",
+    "test_results": "Endoscopy, H. pylori test",
+    "recommendation": "Use antacids, avoid NSAIDs, and treat H. pylori if present.",
+    "medicine": "Omeprazole, Clarithromycin, Amoxicillin"
+  },
+  {
+    "name": "Urinary Tract Infection (UTI)",
+    "symptoms": "burning sensation during urination, frequent urge to urinate",
+    "test_results": "Urinalysis, urine culture",
+    "recommendation": "Use prescribed antibiotics and drink plenty of fluids.",
+    "medicine": "Nitrofurantoin, Ciprofloxacin, Trimethoprim-sulfamethoxazole"
+  },
+  {
+    "name": "Hepatitis B",
+    "symptoms": "jaundice, abdominal pain, dark urine",
+    "test_results": "Hepatitis B surface antigen test",
+    "recommendation": "Antiviral medication if chronic, avoid alcohol, and monitor liver function.",
+    "medicine": "Tenofovir, Entecavir"
+  },
+  {
+    "name": "Measles",
+    "symptoms": "fever, cough, rash, red eyes",
+    "test_results": "Measles IgM antibody test",
+    "recommendation": "Supportive care, isolate patient, and ensure vaccination.",
+    "medicine": "Paracetamol, Vitamin A, oral rehydration salts"
+  },
+  {
+    "name": "Chickenpox",
+    "symptoms": "itchy rash, fever, fatigue",
+    "test_results": "Clinical diagnosis, PCR test",
+    "recommendation": "Rest, avoid scratching, and use antivirals if severe.",
+    "medicine": "Acyclovir, Calamine lotion, Paracetamol"
+  },
+  {
+    "name": "Meningitis",
+    "symptoms": "fever, neck stiffness, headache, confusion",
+    "test_results": "Lumbar puncture, blood culture",
+    "recommendation": "Hospitalization and treatment with antibiotics or antivirals.",
+    "medicine": "Ceftriaxone, Vancomycin, Dexamethasone"
+  },
+  {
+    "name": "Tonsillitis",
+    "symptoms": "sore throat, swollen tonsils, difficulty swallowing",
+    "test_results": "Throat swab culture",
+    "recommendation": "Use antibiotics if bacterial and manage pain with supportive care.",
+    "medicine": "Amoxicillin, Ibuprofen, Paracetamol"
+  },
+  {
+    "name": "Scabies",
+    "symptoms": "intense itching, skin rash with burrows",
+    "test_results": "Skin scraping microscopy",
+    "recommendation": "Apply prescribed scabicide cream and wash clothing in hot water.",
+    "medicine": "Permethrin cream, Ivermectin"
+  },
+  {
+    "name": "Ringworm",
+    "symptoms": "itchy, circular red rash on skin",
+    "test_results": "Skin scraping, fungal culture",
+    "recommendation": "Use antifungal creams or oral medication.",
+    "medicine": "Clotrimazole, Terbinafine, Griseofulvin"
+  },
+  {
+    "name": "Conjunctivitis (Pink Eye)",
+    "symptoms": "red, watery eyes, itching, discharge",
+    "test_results": "Clinical examination",
+    "recommendation": "Maintain hygiene, use antibiotic drops if bacterial, and avoid touching eyes.",
+    "medicine": "Chloramphenicol eye drops, artificial tears"
+  },
+  {
+    "name": "Otitis Media",
+    "symptoms": "ear pain, fever, hearing loss",
+    "test_results": "Otoscopy",
+    "recommendation": "Use pain relievers, antibiotics if bacterial, and monitor for complications.",
+    "medicine": "Amoxicillin, Ibuprofen, Paracetamol"
+  },
+  {
+    "name": "Gastroenteritis",
+    "symptoms": "diarrhea, vomiting, abdominal cramps",
+    "test_results": "Stool test, clinical diagnosis",
+    "recommendation": "Rehydrate, rest, and use antibiotics only if bacterial.",
+    "medicine": "Oral rehydration salts, Metronidazole, Ciprofloxacin"
+  },
+  {
+    "name": "Rheumatic Fever",
+    "symptoms": "fever, joint pain, rash, heart inflammation",
+    "test_results": "Throat swab, ECG, ASO titer",
+    "recommendation": "Use antibiotics and anti-inflammatory drugs, monitor heart health.",
+    "medicine": "Penicillin, Aspirin, Prednisone"
+  },
+  {
+    "name": "Migraine",
+    "symptoms": "throbbing headache, nausea, sensitivity to light",
+    "test_results": "Clinical evaluation, CT/MRI if needed",
+    "recommendation": "Avoid triggers, use prescribed pain relievers or preventive medications.",
+    "medicine": "Sumatriptan, Ibuprofen, Propranolol"
+  },
+  {
+    "name": "Epilepsy",
+    "symptoms": "seizures, confusion, loss of consciousness",
+    "test_results": "EEG, MRI/CT scan",
+    "recommendation": "Use antiepileptic drugs, avoid seizure triggers, and regular follow-up.",
+    "medicine": "Carbamazepine, Sodium Valproate, Lamotrigine"
+  },
+  {
+    "name": "Depression",
+    "symptoms": "persistent sadness, fatigue, loss of interest",
+    "test_results": "Psychological evaluation",
+    "recommendation": "Therapy, antidepressant medication, support groups.",
+    "medicine": "Fluoxetine, Sertraline, Amitriptyline"
+  },
+  {
+    "name": "Anxiety Disorder",
+    "symptoms": "nervousness, rapid heartbeat, restlessness",
+    "test_results": "Psychological assessment",
+    "recommendation": "Cognitive-behavioral therapy, relaxation techniques, medication if needed.",
+    "medicine": "Diazepam, Buspirone, Sertraline"
+  },
+  {
+    "name": "Anemia",
+    "symptoms": "fatigue, weakness, pale skin",
+    "test_results": "Complete blood count (CBC), iron studies",
+    "recommendation": "Iron supplements, dietary changes, treat underlying causes.",
+    "medicine": "Ferrous sulfate, Folic acid, Vitamin B12"
+  },
+  {
+    "name": "Goiter",
+    "symptoms": "swelling in neck, difficulty swallowing",
+    "test_results": "Thyroid function test, ultrasound",
+    "recommendation": "Iodine supplementation, thyroid hormone therapy, surgery if large.",
+    "medicine": "Levothyroxine, Potassium iodide"
+  },
+  {
+    "name": "Hypertension",
+    "symptoms": "headaches, shortness of breath, nosebleeds",
+    "test_results": "Blood pressure measurement",
+    "recommendation": "Reduce salt intake, exercise daily, and take antihypertensive medication as prescribed.",
+    "medicine": "Amlodipine, Lisinopril, Hydrochlorothiazide"
+  },
+  {
+    "name": "Diabetes Mellitus",
+    "symptoms": "frequent urination, increased thirst, unexplained weight loss",
+    "test_results": "Fasting blood sugar, HbA1c test",
+    "recommendation": "Maintain a balanced diet, exercise regularly, monitor blood sugar, and take insulin or oral medications.",
+    "medicine": "Metformin, Insulin, Glibenclamide"
+  },
+  {
+    "name": "Asthma",
+    "symptoms": "shortness of breath, wheezing, chest tightness",
+    "test_results": "Spirometry, peak flow measurement",
+    "recommendation": "Avoid triggers, use inhalers as prescribed, and monitor symptoms.",
+    "medicine": "Salbutamol, Budesonide, Montelukast"
+  },
+  {
+    "name": "Malaria",
+    "symptoms": "fever, chills, headache, vomiting",
+    "test_results": "Blood smear, rapid diagnostic test",
+    "recommendation": "Take antimalarial medications and use mosquito nets.",
+    "medicine": "Artemether-Lumefantrine, Quinine, Chloroquine"
+  },
+  {
+    "name": "Pneumonia",
+    "symptoms": "cough, fever, chills, difficulty breathing",
+    "test_results": "Chest X-ray, sputum culture",
+    "recommendation": "Use antibiotics as prescribed, rest, and stay hydrated.",
+    "medicine": "Amoxicillin, Azithromycin, Ceftriaxone"
+  },
+  {
+    "name": "Tuberculosis",
+    "symptoms": "persistent cough, weight loss, night sweats, fever",
+    "test_results": "Sputum smear microscopy, chest X-ray",
+    "recommendation": "Take a full course of anti-TB drugs as prescribed.",
+    "medicine": "Isoniazid, Rifampicin, Pyrazinamide, Ethambutol"
+  },
+  {
+    "name": "HIV/AIDS",
+    "symptoms": "fever, weight loss, recurrent infections",
+    "test_results": "HIV antibody test, CD4 count",
+    "recommendation": "Start and adhere to antiretroviral therapy (ART).",
+    "medicine": "Tenofovir, Lamivudine, Efavirenz"
+  },
+  {
+    "name": "COVID-19",
+    "symptoms": "fever, cough, loss of taste or smell, fatigue",
+    "test_results": "PCR test, antigen test",
+    "recommendation": "Isolate, take supportive care, and follow medical advice.",
+    "medicine": "Paracetamol, Azithromycin (if bacterial infection), Dexamethasone (if severe)"
+  },
+  {
+    "name": "Dysentery",
+    "symptoms": "bloody diarrhea, abdominal cramps, fever",
+    "test_results": "Stool culture",
+    "recommendation": "Maintain hygiene, drink clean water, and use antibiotics if bacterial.",
+    "medicine": "Metronidazole, Ciprofloxacin, ORS"
+  },
+  {
+    "name": "Typhoid Fever",
+    "symptoms": "high fever, weakness, stomach pain, constipation or diarrhea",
+    "test_results": "Widal test, blood culture",
+    "recommendation": "Use antibiotics as prescribed, rest, and hydrate.",
+    "medicine": "Ceftriaxone, Azithromycin, Ciprofloxacin"
+  },{
+  "name": "Peptic Ulcer Disease",
+  "symptoms": "burning stomach pain, bloating, nausea",
+  "test_results": "Endoscopy, H. pylori test",
+  "recommendation": "Avoid NSAIDs, eat smaller meals, and take acid-reducing medication.",
+  "medicine": "Omeprazole, Amoxicillin, Clarithromycin"
+},
+{
+  "name": "Gastroenteritis",
+  "symptoms": "diarrhea, vomiting, abdominal cramps",
+  "test_results": "Stool test, physical examination",
+  "recommendation": "Stay hydrated and use antidiarrheals if needed.",
+  "medicine": "ORS, Loperamide, Ciprofloxacin"
+},
+{
+  "name": "Hepatitis B",
+  "symptoms": "fatigue, jaundice, abdominal pain",
+  "test_results": "HBsAg test, liver function test",
+  "recommendation": "Avoid alcohol, monitor liver health, and take antivirals if necessary.",
+  "medicine": "Tenofovir, Entecavir, Interferon alfa"
+},
+{
+  "name": "Urinary Tract Infection (UTI)",
+  "symptoms": "burning urination, frequent urge to urinate, cloudy urine",
+  "test_results": "Urine culture",
+  "recommendation": "Increase fluid intake and complete antibiotic course.",
+  "medicine": "Nitrofurantoin, Trimethoprim-Sulfamethoxazole, Ciprofloxacin"
+},
+{
+  "name": "Meningitis",
+  "symptoms": "fever, stiff neck, sensitivity to light, headache",
+  "test_results": "Lumbar puncture, CT scan",
+  "recommendation": "Immediate hospitalization and antibiotics or antivirals.",
+  "medicine": "Ceftriaxone, Vancomycin, Acyclovir"
+},
+{
+  "name": "Otitis Media",
+  "symptoms": "ear pain, fever, hearing problems",
+  "test_results": "Otoscopy, tympanometry",
+  "recommendation": "Pain management and antibiotics if bacterial.",
+  "medicine": "Amoxicillin, Ibuprofen, Ciprofloxacin ear drops"
+},
+{
+  "name": "Bronchitis",
+  "symptoms": "persistent cough, chest discomfort, mucus production",
+  "test_results": "Chest X-ray, sputum test",
+  "recommendation": "Rest, stay hydrated, and use cough suppressants.",
+  "medicine": "Salbutamol, Amoxicillin, Dextromethorphan"
+},
+{
+  "name": "Conjunctivitis",
+  "symptoms": "redness in the eye, itching, discharge",
+  "test_results": "Eye examination, swab culture",
+  "recommendation": "Maintain eye hygiene and use eye drops.",
+  "medicine": "Chloramphenicol eye drops, Lubricant eye drops"
+},
+{
+  "name": "Scabies",
+  "symptoms": "intense itching, skin rash, sores",
+  "test_results": "Skin scraping examination",
+  "recommendation": "Apply scabicidal cream and wash clothes in hot water.",
+  "medicine": "Permethrin cream, Ivermectin"
+},
+{
+  "name": "Ringworm",
+  "symptoms": "circular rash, red itchy patches",
+  "test_results": "Skin scraping, fungal culture",
+  "recommendation": "Use antifungal cream and maintain hygiene.",
+  "medicine": "Clotrimazole, Terbinafine"
+},
+{
+  "name": "Measles",
+  "symptoms": "fever, cough, rash, runny nose",
+  "test_results": "Measles antibody test, physical signs",
+  "recommendation": "Supportive care and vaccination for prevention.",
+  "medicine": "Vitamin A, Paracetamol"
+},
+{
+  "name": "Chickenpox",
+  "symptoms": "itchy rash, fever, fatigue",
+  "test_results": "Physical exam, PCR test",
+  "recommendation": "Isolate, soothe itching, and take antivirals if severe.",
+  "medicine": "Acyclovir, Calamine lotion"
+},
+{
+  "name": "Tonsillitis",
+  "symptoms": "sore throat, swollen tonsils, difficulty swallowing",
+  "test_results": "Throat swab, physical exam",
+  "recommendation": "Rest, drink warm fluids, and use antibiotics if bacterial.",
+  "medicine": "Amoxicillin, Ibuprofen, Paracetamol"
+},
+{
+  "name": "Anemia",
+  "symptoms": "fatigue, pale skin, shortness of breath",
+  "test_results": "Complete blood count (CBC)",
+  "recommendation": "Eat iron-rich foods and take supplements.",
+  "medicine": "Ferrous sulfate, Folic acid, Vitamin B12"
+},
+{
+  "name": "Migraine",
+  "symptoms": "throbbing headache, nausea, sensitivity to light",
+  "test_results": "Neurological exam, MRI if needed",
+  "recommendation": "Avoid triggers and use migraine-specific medication.",
+  "medicine": "Sumatriptan, Ibuprofen, Propranolol"
+},
+{
+  "name": "Gallstones",
+  "symptoms": "abdominal pain, nausea, vomiting",
+  "test_results": "Ultrasound, liver function test",
+  "recommendation": "Low-fat diet and surgery if symptomatic.",
+  "medicine": "Ursodeoxycholic acid, Pain relievers"
+},
+{
+  "name": "Appendicitis",
+  "symptoms": "abdominal pain (lower right), nausea, fever",
+  "test_results": "CT scan, physical exam",
+  "recommendation": "Surgical removal of appendix (appendectomy).",
+  "medicine": "Ceftriaxone, Metronidazole (pre/post-surgery)"
+},
+{
+  "name": "Pelvic Inflammatory Disease",
+  "symptoms": "lower abdominal pain, fever, abnormal discharge",
+  "test_results": "Pelvic exam, ultrasound, STI tests",
+  "recommendation": "Complete full antibiotic course.",
+  "medicine": "Ceftriaxone, Doxycycline, Metronidazole"
+},
+{
+  "name": "Depression",
+  "symptoms": "persistent sadness, loss of interest, fatigue",
+  "test_results": "Psychological evaluation, DSM-5 criteria",
+  "recommendation": "Therapy and medications if needed.",
+  "medicine": "Fluoxetine, Sertraline, Amitriptyline"
+},
+{
+  "name": "Epilepsy",
+  "symptoms": "seizures, confusion, loss of awareness",
+  "test_results": "EEG, MRI",
+  "recommendation": "Take antiepileptic drugs regularly and avoid triggers.",
+  "medicine": "Carbamazepine, Valproic acid, Lamotrigine"
+}
+]

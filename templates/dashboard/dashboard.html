@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% block title %}Medical AI Dashboard{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  <h1 class="mb-5 text-center fw-bold">Medical AI Dashboard</h1>
+
+  <div class="row g-4">
+    <!-- Patients by Gender -->
+    <section class="col-md-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-header bg-primary text-white">
+          <h5 class="mb-0">Patients by Gender</h5>
+        </div>
+        <div class="card-body">
+          <div id="genderPlot" style="min-height: 350px;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Patients by Status -->
+    <section class="col-md-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-header bg-info text-white">
+          <h5 class="mb-0">Patients by Status</h5>
+        </div>
+        <div class="card-body">
+          <div id="statusPlot" style="min-height: 350px;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Diagnoses by Disease -->
+    <section class="col-md-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-header bg-warning text-white">
+          <h5 class="mb-0">Diagnoses by Disease</h5>
+        </div>
+        <div class="card-body">
+          <div id="diseasePlot" style="min-height: 350px;"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- Plotly.js CDN -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script>
+  // Parse JSON data from Django context
+  const genders = JSON.parse('{{ genders|escapejs }}');
+  const genderValues = JSON.parse('{{ gender_values|escapejs }}');
+
+  const statuses = JSON.parse('{{ statuses|escapejs }}');
+  const statusValues = JSON.parse('{{ status_values|escapejs }}');
+
+  const diseases = JSON.parse('{{ diseases|escapejs }}');
+  const diseaseValues = JSON.parse('{{ disease_values|escapejs }}');
+
+  // Patients by Gender - Donut Chart
+  const genderData = [{
+    values: genderValues,
+    labels: genders,
+    type: 'pie',
+    hole: 0.4,
+    marker: { colors: ['#36A2EB', '#FF6384', '#FFCE56'] },
+    hoverinfo: 'label+percent+value',
+    textinfo: 'label+percent'
+  }];
+
+  const genderLayout = {
+    margin: { t: 10, b: 10, l: 10, r: 10 },
+    showlegend: true,
+    height: 350
+  };
+
+  Plotly.newPlot('genderPlot', genderData, genderLayout, {responsive: true});
+
+  // Patients by Status - Bar Chart
+  const statusData = [{
+    x: statuses,
+    y: statusValues,
+    type: 'bar',
+    marker: { color: '#4BC0C0' },
+    hoverinfo: 'x+y'
+  }];
+
+  const statusLayout = {
+    margin: { t: 30, b: 50, l: 50, r: 20 },
+    yaxis: { title: 'Number of Patients', zeroline: true },
+    xaxis: { title: 'Status' },
+    height: 350
+  };
+
+  Plotly.newPlot('statusPlot', statusData, statusLayout, {responsive: true});
+
+  // Diagnoses by Disease - Horizontal Bar Chart
+  const diseaseData = [{
+    x: diseaseValues,
+    y: diseases,
+    type: 'bar',
+    orientation: 'h',
+    marker: { color: '#FF9F40' },
+    hoverinfo: 'y+x'
+  }];
+
+  const diseaseLayout = {
+    margin: { t: 30, b: 50, l: 120, r: 20 },
+    xaxis: { title: 'Diagnosis Count', zeroline: true },
+    yaxis: { title: 'Disease', automargin: true },
+    height: 350
+  };
+
+  Plotly.newPlot('diseasePlot', diseaseData, diseaseLayout, {responsive: true});
+</script>
+{% endblock %}
