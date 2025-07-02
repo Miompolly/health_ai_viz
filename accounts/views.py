@@ -75,6 +75,11 @@ from django.contrib import messages
 def profile_view(request):
     return render(request, 'pages/profile.html', {'user': request.user})
 
+
+
+def add_profile_view(request):
+    return render(request, 'pages/add_profile.html', {'user': request.user})
+
 @login_required
 def edit_profile(request):
     user = request.user

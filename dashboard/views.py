@@ -2,37 +2,57 @@ from django.shortcuts import render
 from symptom_checker.models import UserSymptom, Disease
 from django.shortcuts import get_object_or_404, render
 from symptom_checker.models import UserSymptom
+from django.contrib.auth import get_user_model
 
 from django.shortcuts import render
-from django.db.models import Count, Q
-from django.http import JsonResponse
-from patients.models import Patient 
+from django.db.models import Count
 import json
 
+from patients.models import Patient
+from symptom_checker.models import UserSymptom
 def dashboard(request):
     patients = Patient.objects.all()
+
+    # Gender breakdown
     gender_counts = patients.values('gender').annotate(count=Count('id'))
-    genders = [item['gender'] for item in gender_counts]
+    genders = [item['gender'] or 'Unknown' for item in gender_counts]
     gender_values = [item['count'] for item in gender_counts]
 
+    # Status breakdown
     status_counts = patients.values('status').annotate(count=Count('id'))
-    statuses = [item['status'] for item in status_counts]
+    statuses = [item['status'] or 'Unknown' for item in status_counts]
     status_values = [item['count'] for item in status_counts]
 
+    # Disease frequency from UserSymptom records
     symptoms = UserSymptom.objects.all()
     disease_counts = symptoms.values('disease__name').annotate(count=Count('id')).order_by('-count')
     diseases = [item['disease__name'] or 'Unknown' for item in disease_counts]
     disease_values = [item['count'] for item in disease_counts]
 
+    # Top metrics for cards
+    total_patients = patients.count()
+  
+    male_patients = patients.filter(gender='Male').count()
+    female_patients = patients.filter(gender='Female').count()
+
     context = {
+        'total_patients': total_patients,
+       
+        'male_patients': male_patients,
+        'female_patients': female_patients,
+
         'genders': json.dumps(genders),
         'gender_values': json.dumps(gender_values),
+
         'statuses': json.dumps(statuses),
         'status_values': json.dumps(status_values),
+
         'diseases': json.dumps(diseases),
         'disease_values': json.dumps(disease_values),
     }
+
     return render(request, 'dashboard/dashboard.html', context)
+
 
 def diagnostics(request):
     return render(request, 'pages/diagnostics.html')
@@ -130,45 +150,87 @@ from datetime import timedelta
 from django.db.models.functions import TruncMonth
 from patients.models import Patient
 
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.db.models import Count
+from accounts.models import Account
+from patients.models import Patient
+from symptom_checker.models import UserSymptom
+
+def is_admin(user):
+    return user.is_authenticated and user.role == 'admin'
+
+@login_required
 def admin_dashboard(request):
+    # Cards Data
     total_patients = Patient.objects.count()
+    active_users = Account.objects.filter(is_active=True).count()
+    admins = Account.objects.filter(role='admin').count()
+    doctors = Account.objects.filter(role='doctor').count()
 
-    # Gender distribution
-    gender_data = Patient.objects.values('gender').annotate(count=Count('gender'))
+    # Chart Data
+    gender_counts = Patient.objects.values('gender').annotate(count=Count('id'))
+    genders = [item['gender'] for item in gender_counts]
+    gender_values = [item['count'] for item in gender_counts]
 
-    # Diagnosis count per disease
-    disease_data = (
-        UserSymptom.objects.values('disease__name')
-        .annotate(count=Count('disease'))
-        .order_by('-count')
-    )
+    status_counts = Patient.objects.values('status').annotate(count=Count('id'))
+    statuses = [item['status'] for item in status_counts]
+    status_values = [item['count'] for item in status_counts]
 
-    # Monthly patients for last 6 months
-    six_months_ago = now() - timedelta(days=180)
-
-    patients_by_month = (
-        Patient.objects.filter(created_at__gte=six_months_ago)
-        .annotate(month=TruncMonth('created_at'))
-        .values('month')
-        .annotate(count=Count('id'))
-        .order_by('month')
-    )
-
-
-    monthly_data = [
-        {'month': item['month'].strftime('%Y-%m'), 'count': item['count']}
-        for item in patients_by_month
-    ]
+    disease_counts = UserSymptom.objects.values('disease__name').annotate(count=Count('id')).order_by('-count')
+    diseases = [item['disease__name'] or 'Unknown' for item in disease_counts]
+    disease_values = [item['count'] for item in disease_counts]
 
     context = {
         'total_patients': total_patients,
-        'gender_data': list(gender_data),
-        'disease_data': list(disease_data),
-        'patients_by_month': monthly_data,
+        'active_users': active_users,
+        'admins': admins,
+        'doctors': doctors,
+        'genders': json.dumps(genders),
+        'gender_values': json.dumps(gender_values),
+        'statuses': json.dumps(statuses),
+        'status_values': json.dumps(status_values),
+        'diseases': json.dumps(diseases),
+        'disease_values': json.dumps(disease_values),
     }
 
     return render(request, 'pages/admin_dashboard.html', context)
 
 
 def manage_users(request):
-    return render(request, 'pages/manage_users.html')
+    User = get_user_model()
+    users = User.objects.all().order_by('id')
+    
+    context = {
+        'users': users,
+    }
+    return render(request, 'pages/manage_users.html', context)
+
+
+
+User = get_user_model()
+
+from django.contrib import messages
+# ... rest of imports
+
+def edit_user(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    if request.method == 'POST':
+        user.first_name = request.POST.get('first_name', user.first_name)
+        user.last_name = request.POST.get('last_name', user.last_name)
+        user.email = request.POST.get('email', user.email)
+        user.role = request.POST.get('role', user.role)
+        user.is_active = bool(request.POST.get('is_active'))
+        user.save()
+        messages.success(request, 'User updated successfully.')
+        return redirect('manage_users')
+
+    return render(request, 'pages/edit_user.html', {'user': user})
+
+def delete_user(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    if request.method == 'POST':
+        user.delete()
+        messages.success(request, 'User deleted successfully.')
+        return redirect('manage_users')
+    return render(request, 'pages/delete_user_confirm.html', {'user': user})

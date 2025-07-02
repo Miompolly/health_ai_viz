@@ -3,7 +3,7 @@ import django
 import json
 
 # 1. Set Django settings environment variable
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'health_ai_viz.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'cognitive_ai.settings')
 
 # 2. Setup Django
 django.setup()
