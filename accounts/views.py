@@ -63,9 +63,6 @@ def logout_view(request):
     return redirect('login')
 
 
-def home(request):
-    return render(request, "home.html")
-
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
