@@ -146,7 +146,19 @@
               <small class="text-danger">{{ error }}</small>
               {% endfor %}
             </div>
-
+            <div class="mb-3">
+              <label><i class="fas fa-user-tag me-2"></i>Role</label>
+              <select name="role" class="form-control" required>
+                <option value="">Select role</option>
+                <option value="admin">Admin</option>
+                <option value="doctor">Doctor</option>
+                <option value="nurse">Nurse</option>
+              </select>
+              {% for error in form.role.errors %}
+                <small class="text-danger">{{ error }}</small>
+              {% endfor %}
+            </div>
+            
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label><i class="fas fa-key me-2"></i>Password</label>

@@ -5,7 +5,7 @@ from .models import Account
 class UserRegistrationForm(UserCreationForm):
     class Meta:
         model = Account
-        fields = ['first_name', 'last_name', 'phone_number', 'email'] 
+        fields = ['first_name', 'last_name', 'phone_number','role','email'] 
 
     password1 = forms.CharField(
         widget=forms.PasswordInput(attrs={'class': 'form-control'}),

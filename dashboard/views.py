@@ -234,3 +234,68 @@ def delete_user(request, user_id):
         messages.success(request, 'User deleted successfully.')
         return redirect('manage_users')
     return render(request, 'pages/delete_user_confirm.html', {'user': user})
+
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+
+@login_required
+def nurse_dashboard(request):
+    total_patients = Patient.objects.count()
+    female_patients = Patient.objects.filter(gender='Female').count()
+    male_patients = Patient.objects.filter(gender='Male').count()
+
+    # Gender distribution
+    gender_counts = Patient.objects.values('gender').annotate(count=Count('id'))
+    genders = [item['gender'] or 'Unknown' for item in gender_counts]
+    gender_values = [item['count'] for item in gender_counts]
+
+    # Disease frequency
+    disease_counts = UserSymptom.objects.values('disease__name').annotate(count=Count('id')).order_by('-count')
+    diseases = [item['disease__name'] or 'Unknown' for item in disease_counts]
+    disease_values = [item['count'] for item in disease_counts]
+
+    context = {
+        'total_patients': total_patients,
+        'male_patients': male_patients,
+        'female_patients': female_patients,
+        'genders': json.dumps(genders),
+        'gender_values': json.dumps(gender_values),
+        'diseases': json.dumps(diseases),
+        'disease_values': json.dumps(disease_values),
+    }
+    return render(request, 'pages/nurse_dashboard.html', context)
+
+
+
+from django.shortcuts import render
+from symptom_checker.models import VitalSign
+
+def vital_signs_list(request):
+    query = request.GET.get('q')
+    if query:
+        vital_signs = VitalSign.objects.filter(disease__name__icontains=query)
+    else:
+        vital_signs = VitalSign.objects.all()
+    
+    return render(request, 'pages/vital_signs_list.html', {
+        'vital_signs': vital_signs,
+        'query': query or ''
+    })
+
+
+
+from django.shortcuts import render, redirect
+from .forms import VitalSignForm
+
+def vital_sign_create(request):
+    if request.method == 'POST':
+        form = VitalSignForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Vital sign record created successfully.")
+            return redirect('vital_signs_list')
+        else:
+            messages.error(request, "Please correct the errors below.")
+    else:
+        form = VitalSignForm()
+    return render(request, 'pages/vital_sign_create.html', {'form': form})

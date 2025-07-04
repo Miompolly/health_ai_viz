@@ -1,0 +1,102 @@
+{% extends 'nursebase.html' %}
+{% block title %}Nurse Dashboard - Medical AI{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+  <h1 class="h3 mb-4">Welcome Nurse - Dashboard Overview</h1>
+
+  <div class="row">
+    <!-- Total Patients -->
+    <div class="col-xl-4 col-md-6 mb-4">
+      <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Patients</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">{{ total_patients }}</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-user-injured fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Male Patients -->
+    <div class="col-xl-4 col-md-6 mb-4">
+      <div class="card border-left-info shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Male Patients</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">{{ male_patients }}</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-male fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Female Patients -->
+    <div class="col-xl-4 col-md-6 mb-4">
+      <div class="card border-left-danger shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Female Patients</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">{{ female_patients }}</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-female fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Diagnosis Chart -->
+  <div class="row">
+    <div class="col-xl-12 col-lg-12">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Disease Diagnosis Overview</h6>
+        </div>
+        <div class="card-body">
+          <canvas id="diagnosisChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Chart JS Script -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const ctx = document.getElementById("diagnosisChart").getContext("2d");
+  const diagnosisChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: {{ diseases|safe }},
+      datasets: [{
+        label: 'Number of Diagnoses',
+        data: {{ disease_values|safe }},
+        backgroundColor: 'rgba(54, 162, 235, 0.7)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+{% endblock %}

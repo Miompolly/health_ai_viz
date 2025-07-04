@@ -23,6 +23,9 @@ urlpatterns = [
 
     path('manage_users/edit/<int:user_id>/', views.edit_user, name='edit_user'),
     path('manage_users/delete/<int:user_id>/', views.delete_user, name='delete_user'),
+    path('nurse/dashboard/', views.nurse_dashboard, name='nurse_dashboard'),
+    path('nurse/vitals/', views.vital_signs_list, name='vital_signs_list'),
+    path('nurse/vitals/create/', views.vital_sign_create, name='vital_sign_create'),
     
 
 ]

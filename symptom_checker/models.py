@@ -27,3 +27,25 @@ class UserSymptom(models.Model):
     @property
     def medicine(self):
         return self.disease.medicine if self.disease else None
+    
+from patients.models import Patient 
+
+class VitalSign(models.Model):
+    patient = models.ForeignKey(
+        Patient,
+        related_name='vital_signs', null=True, blank=True,
+        on_delete=models.CASCADE
+    )
+    disease = models.ForeignKey(
+        'Disease',
+        related_name='vital_signs',
+        on_delete=models.CASCADE
+    )
+    temperature = models.CharField(max_length=100, blank=True, null=True)
+    heart_rate = models.CharField(max_length=100, blank=True, null=True)
+    respiratory_rate = models.CharField(max_length=100, blank=True, null=True)
+    blood_pressure = models.CharField(max_length=100, blank=True, null=True)
+    notes = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return f"Vital signs for {self.patient} - {self.disease.name}"

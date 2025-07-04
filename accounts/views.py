@@ -36,21 +36,27 @@ def login(request):
 
         try:
             user = get_user_model().objects.get(email=email)
-            if user.check_password(password):  # Check if the password matches
-                auth_login(request, user)  # Log the user in
-                if user.role == "admin":
-                    return redirect('dashboard')  # Redirect to the admin dashboard
-                elif user.role == "doctor":
-                    return redirect('dashboard')  # Redirect to the doctor dashboard
-                else:
-                    return redirect('dashboard')  # Default redirect (if any other role)
-            else:
-                messages.error(request, 'Invalid password')  # Invalid password
-        except get_user_model().DoesNotExist:
-            messages.error(request, 'Invalid email address')  # Email not found
 
-        # In case of invalid credentials, remain on the login page
-        return render(request, 'accounts/login.html', {'messages': messages.get_messages(request)})
+            if not user.is_active:
+                messages.error(request, 'Your account is not active. Please contact support.')
+                return render(request, 'accounts/login.html')
+
+            if user.check_password(password):
+                auth_login(request, user)
+
+                if user.role == "admin":
+                    return redirect('admin_dashboard')
+                elif user.role == "doctor":
+                    return redirect('dashboard')
+                else:
+                    return redirect('nurse_dashboard')
+            else:
+                messages.error(request, 'Invalid password')
+
+        except get_user_model().DoesNotExist:
+            messages.error(request, 'Invalid email address')
+
+        return render(request, 'accounts/login.html')
 
     return render(request, 'accounts/login.html')
 
